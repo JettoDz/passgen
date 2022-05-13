@@ -1,0 +1,20 @@
+<?page title="String -> BCrypt" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:n="native" xmlns:w='client'>
+<window title="Ingresa la contraseña a encriptar; click en la contraseña para copiar" border="normal" position="center" 
+	viewModel="@id('vm') @init('bmf.project.passgen.Index')">
+	<div>
+		<textbox id="tb" value="@save(vm.pass)" instant="true"/>
+		<textbox readonly="true" class="pass" style="width: 60%" value="@load(vm.cPass())" w:onClick="copyPass()"
+			onClick='Clients.showNotification("Copiado!", "info", self, "after_center", 0)'/>
+	</div>
+	<n:script>
+		function copyPass(){
+			let label = document.getElementsByClassName('pass')[0]
+			label.focus()
+			label.select()
+			let copied = document.execCommand('copy')
+		}
+	</n:script>
+</window>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</zk>
